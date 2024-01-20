@@ -187,6 +187,9 @@ def get_notebooklist():
 
 def get_sort():
     """获取database中的最新时间"""
+    '''也就是说如果没有在本书继续做笔记，本书的sort就不会增加，否则增长；'''
+    '''这样在插入笔记时，就会先进行比较，若sort未增加，就会后续的修改记录，否则才会补充修改笔记'''
+    '''相当于减少不必要的程序运行'''
     filter = {"property": "Sort", "number": {"is_not_empty": True}}
     sorts = [
         {
@@ -374,6 +377,8 @@ if __name__ == "__main__":
     if books != None:
         for index, book in enumerate(books):
             sort = book["sort"]
+            '''这里，其实就是将实时的sort记录时间，与notion中记录的sort时间latest_sort比较'''
+            '''如果，未增长，就没必要继续后面的程序，即continue；否则，再修改本书笔记'''
             if sort <= latest_sort:
                 continue
             book = book.get("book")
