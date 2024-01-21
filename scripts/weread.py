@@ -142,7 +142,7 @@ def insert_to_notion(bookName, bookId, cover, sort, author, isbn, rating, catego
         properties["ReadingTime"] = get_rich_text(format_time)
         properties["Progress"] = get_number(readingProgress)
         if "finishedDate" in read_info:
-            properties["Date"] = get_date(datetime.utcfromtimestamp(
+            properties["Finish_Date"] = get_date(datetime.utcfromtimestamp(
                         read_info.get("finishedDate")
                     ).strftime("%Y-%m-%d %H:%M:%S"))
 
