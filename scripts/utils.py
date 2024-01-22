@@ -56,7 +56,7 @@ def get_date(start):
     }
 
 
-def get_cover(url):
+def get_icon(url):
     return {"type": "external", "external": {"url": url}}
 
 
