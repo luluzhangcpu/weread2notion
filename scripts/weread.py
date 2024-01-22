@@ -11,7 +11,7 @@ from http.cookies import SimpleCookie
 from datetime import datetime
 import hashlib
 
-from utils import get_callout, get_date, get_file, get_heading, get_icon, get_multi_select, get_number, get_quote, get_rich_text, get_select, get_table_of_contents, get_title, get_url
+from utils import get_callout, get_date, get_file, get_heading, get_cover, get_multi_select, get_number, get_quote, get_rich_text, get_select, get_table_of_contents, get_title, get_url
 
 WEREAD_URL = "https://weread.qq.com/"
 WEREAD_NOTEBOOKS_URL = "https://i.weread.qq.com/user/notebooks"
@@ -146,9 +146,9 @@ def insert_to_notion(bookName, bookId, cover, sort, author, isbn, rating, catego
                     ).strftime("%Y-%m-%d %H:%M:%S"))
 
     if cover.startswith("http"):
-        icon = get_icon(cover)
+        cover1 = get_cover(cover)
     # notion api 限制100个block
-    response = client.pages.create(parent=parent, icon=icon, properties=properties)
+    response = client.pages.create(parent=parent, cover=cover1, properties=properties)
     id = response["id"]
     return id
 
